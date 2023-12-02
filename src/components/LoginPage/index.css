@@ -1,0 +1,122 @@
+.login-main {
+  height: 100vh;
+  width: 100vw;
+  padding: 2%;
+  background-image: url('https://res.cloudinary.com/dmhmf156f/image/upload/v1701064366/netfilx_1login_bg_image_torhoa.png');
+  font-family: 'Roboto';
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+.movie-icon {
+  height: 10%;
+  width: 15%;
+  background-position: center;
+  align-self: flex-start;
+}
+.botto-div {
+  height: 90%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  background-color: transparent;
+}
+.login-form {
+  height: 60%;
+  width: 45%;
+  border-radius: 8px;
+  padding: 2%;
+  opacity: 0.8;
+  background-color: #0c0b10;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+.login-h1 {
+  color: #ffffff;
+  font-size: 30px;
+  font-weight: 500;
+  margin-bottom: 1%;
+}
+.label-ele {
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 600;
+  align-self: flex-start;
+  margin-bottom: 0.5%;
+  margin-top: 3%;
+}
+.input-ele {
+  height: 15%;
+  width: 100%;
+  border-radius: 3px;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  padding-left: 2%;
+  background-color: #333333;
+  color: #e2e8f0;
+}
+.login-btn-large {
+  background-color: #e50914;
+  height: 18%;
+  width: 100%;
+  border-radius: 5px;
+  border: none;
+  color: #f8fafc;
+  margin-top: 5%;
+  cursor: pointer;
+}
+.login-btn-small {
+  background-color: #e50914;
+  height: 18%;
+  width: 100%;
+  border-radius: 5px;
+  border: none;
+  color: #f8fafc;
+  margin-top: 5%;
+  cursor: pointer;
+  display: none;
+}
+.error-msg {
+  color: #dc2626;
+  font-size: 12px;
+  font-weight: 500;
+  align-self: flex-start;
+  margin: 0px;
+}
+
+@media screen and (max-width: 757px) {
+  .login-main {
+    background-image: none;
+    background-color: #0c0b10;
+    padding: 3%;
+  }
+  .login-h1 {
+    align-self: flex-start;
+  }
+  .movie-icon {
+    height: 15%;
+    width: 35%;
+  }
+  .bottom-div {
+    height: 80%;
+  }
+  .login-form {
+    width: 100%;
+    height: 60%;
+  }
+  .login-btn-large {
+    display: none;
+  }
+  .login-btn-small {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+  }
+}

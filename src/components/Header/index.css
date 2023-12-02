@@ -1,0 +1,111 @@
+.header-main {
+  height: 10%;
+  width: 100%;
+  background: #000000;
+  padding-left: 5%;
+  padding-right: 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0px;
+}
+.header-main:hover {
+  opacity: 1;
+}
+.first-div {
+  width: 28%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.logo-link {
+  height: 70%;
+  width: 48%;
+}
+.movies-icon {
+  height: 100%;
+  width: 100%;
+  background-position: center;
+}
+.link-item {
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 300;
+  text-decoration-color: transparent;
+}
+.second-div {
+  width: 15%;
+  height: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.link-btn {
+  height: 35%;
+  width: 35%;
+}
+.search-btn {
+  height: 100%;
+  width: 100%;
+  border: none;
+  background-color: transparent;
+}
+.search-icon {
+  color: #ffffff;
+  height: 100%;
+  width: 100%;
+  cursor: pointer;
+}
+.link {
+  height: 80%;
+  width: 40%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  text-decoration-color: transparent;
+}
+.link-queue {
+  height: 90%;
+  width: 50%;
+  display: none;
+  text-decoration-color: transparent;
+}
+.profile-img {
+  cursor: pointer;
+}
+.queue-img {
+  cursor: pointer;
+  height: 55%;
+  width: 70%;
+}
+.yes {
+  font-weight: 600;
+}
+
+@media screen and (max-width: 578px) {
+  .link-item {
+    display: none;
+  }
+  .logo-link {
+    height: 90%;
+    width: 75%;
+  }
+  .second-div {
+    width: 25%;
+  }
+  .link-btn {
+    height: 50%;
+    width: 50%;
+  }
+  .link {
+    display: none;
+  }
+  .link-queue {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+  }
+}

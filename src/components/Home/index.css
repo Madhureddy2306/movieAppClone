@@ -1,0 +1,133 @@
+.home-main {
+  height: 100vh;
+  width: 100vw;
+}
+
+.random-movie {
+  height: 30%;
+  width: 100%;
+  background-color: #181818;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  margin-bottom: 0px;
+}
+.bottom-div {
+  height: 60%;
+  width: 100%;
+  background-color: #181818;
+  padding-left: 5%;
+  padding-right: 5%;
+  padding-top: 1%;
+}
+.trending-movie-div {
+  height: 35%;
+  width: 100%;
+  margin-bottom: 0.5%;
+}
+
+.loader-container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  background-color: #0d0d0d;
+}
+.movie-div {
+  height: 80%;
+  width: 100%;
+  padding-left: 5%;
+  padding-right: 5%;
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.movies-category {
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 600;
+  align-self: flex-start;
+  margin-bottom: 0.5%;
+}
+
+.contact-us {
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 500;
+  margin-top: 0.5%;
+  text-align: center;
+}
+.slider {
+  width: 100%;
+}
+.link-card {
+  text-decoration-color: transparent;
+  width: 98%;
+}
+.text {
+  max-width: 95%;
+  display: flex;
+  justify-content: center;
+  margin-right: 1%;
+}
+
+.img-slide {
+  width: 98%;
+  flex-grow: 0;
+  border-radius: 8px;
+  background-size: cover;
+  background-position: center;
+  margin: auto;
+}
+.random-movie-h1 {
+  color: #ffffff;
+  font-size: 24px;
+  font-weight: 600;
+  font-family: 'HK Grotesk';
+  margin-bottom: 0px;
+}
+
+.random-movie-p {
+  color: #ffffff;
+  font-size: 12px;
+  width: 45%;
+  font-weight: 500;
+}
+.link-btn {
+  height: 20px;
+  width: 40px;
+  text-decoration-color: transparent;
+}
+.play-btn {
+  height: 100%;
+  width: 100%;
+  background-color: #ffffff;
+  border: none;
+  border-radius: 2px;
+  color: #171f46;
+  font-size: 10px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.failure-img {
+  height: 10%;
+  width: 10%;
+}
+.fail-para {
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 600;
+  font-family: 'HK Grotesk';
+}
+.try-btn {
+  height: 30px;
+  width: 70px;
+  color: #171f46;
+  border-radius: 4px;
+  border: none;
+  font-size: 12px;
+  font-weight: 600;
+}
