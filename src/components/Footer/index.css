@@ -6,7 +6,6 @@
   align-items: center;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 1%;
 }
 .icons {
   color: #ffffff;
@@ -15,8 +14,21 @@
 }
 .contact-us {
   color: #ffffff;
-  font-size: 12px;
+  font-size: 8px;
   font-weight: 500;
   margin-top: 0.5%;
   text-align: center;
+}
+
+@media (max-width: 576px) {
+  .icons-div {
+    width: 25%;
+    height: 20px;
+    margin-top: 2%;
+    margin-bottom: 0px;
+  }
+  .icons {
+    height: 12px;
+    width: 12px;
+  }
 }

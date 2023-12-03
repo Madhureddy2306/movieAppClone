@@ -98,7 +98,7 @@ class Home extends Component {
     const {trendingMoviesList} = this.state
 
     const settings = {
-      infinite: true,
+      infinite: false,
       speed: 500,
       slidesToShow: 4,
       slidesToScroll: 1,
@@ -108,7 +108,7 @@ class Home extends Component {
           settings: {
             slidesToShow: 4,
             slidesToScroll: 1,
-            infinite: true,
+            infinite: false,
           },
         },
         {
@@ -135,7 +135,7 @@ class Home extends Component {
           <Link to={`/movies/${each.id}`} key={each.id} className="link-card">
             <div className="text">
               <img
-                src={each.backdropPath}
+                src={each.posterPath}
                 alt={each.title}
                 className="img-slide"
               />
@@ -150,7 +150,7 @@ class Home extends Component {
     const {originalMoviesList} = this.state
 
     const settings = {
-      infinite: true,
+      infinite: false,
       speed: 500,
       slidesToShow: 4,
       slidesToScroll: 1,
@@ -160,7 +160,7 @@ class Home extends Component {
           settings: {
             slidesToShow: 4,
             slidesToScroll: 1,
-            infinite: true,
+            infinite: false,
           },
         },
         {
@@ -185,13 +185,13 @@ class Home extends Component {
       <Slider {...settings} className="slider">
         {originalMoviesList.map(each => (
           <Link to={`/movies/${each.id}`} key={each.id} className="link-card">
-            <div className="text">
+            <li className="text">
               <img
-                src={each.backdropPath}
+                src={each.posterPath}
                 alt={each.title}
                 className="img-slide"
               />
-            </div>
+            </li>
           </Link>
         ))}
       </Slider>
@@ -226,13 +226,13 @@ class Home extends Component {
           </div>
         </div>
         <div className="bottom-div">
-          <h1 className="movies-category">Trending Now</h1>
+          <p className="movies-category">Trending Now</p>
           <div className="trending-movie-div">
             {originalMoviesList.length === 0
               ? this.renderLoader()
               : this.renderTrendingVideos()}
           </div>
-          <h1 className="movies-category">Originals</h1>
+          <p className="movies-category">Originals</p>
           <div className="trending-movie-div">
             {trendingMoviesList.length === 0
               ? this.renderLoader()
