@@ -34,41 +34,45 @@ class Home extends Component {
       },
     }
 
-    const originalsResponse = await fetch(originalsUrl, options)
-    const originalsData = await originalsResponse.json()
+    try {
+      const originalsResponse = await fetch(originalsUrl, options)
+      const originalsData = await originalsResponse.json()
 
-    const originalsCamelData = originalsData.results.map(eachMovie => ({
-      backdropPath: eachMovie.backdrop_path,
-      id: eachMovie.id,
-      overview: eachMovie.overview,
-      posterPath: eachMovie.poster_path,
-      title: eachMovie.title,
-    }))
+      const originalsCamelData = originalsData.results.map(eachMovie => ({
+        backdropPath: eachMovie.backdrop_path,
+        id: eachMovie.id,
+        overview: eachMovie.overview,
+        posterPath: eachMovie.poster_path,
+        title: eachMovie.title,
+      }))
 
-    const trendingResponse = await fetch(trendingUrl, options)
-    const data = await trendingResponse.json()
+      const trendingResponse = await fetch(trendingUrl, options)
+      const data = await trendingResponse.json()
 
-    const trendingCamelData = data.results.map(eachMovie => ({
-      backdropPath: eachMovie.backdrop_path,
-      id: eachMovie.id,
-      overview: eachMovie.overview,
-      posterPath: eachMovie.poster_path,
-      title: eachMovie.title,
-    }))
+      const trendingCamelData = data.results.map(eachMovie => ({
+        backdropPath: eachMovie.backdrop_path,
+        id: eachMovie.id,
+        overview: eachMovie.overview,
+        posterPath: eachMovie.poster_path,
+        title: eachMovie.title,
+      }))
 
-    const setImage = () => {
-      const bgEle = document.getElementById('random')
-      const imgUrl = originalsCamelData[randomNum].backdropPath
-      bgEle.style.backgroundImage = `url(${imgUrl})`
+      const setImage = () => {
+        const bgEle = document.getElementById('random')
+        const imgUrl = originalsCamelData[randomNum].backdropPath
+        bgEle.style.backgroundImage = `url(${imgUrl})`
+      }
+
+      this.setState(
+        {
+          originalMoviesList: originalsCamelData,
+          trendingMoviesList: trendingCamelData,
+        },
+        setImage,
+      )
+    } catch (error) {
+      console.log(error)
     }
-
-    this.setState(
-      {
-        originalMoviesList: originalsCamelData,
-        trendingMoviesList: trendingCamelData,
-      },
-      setImage,
-    )
   }
 
   renderLoader = () => (
@@ -84,7 +88,7 @@ class Home extends Component {
     return (
       <>
         <h1 className="random-movie-h1">{randomMovie.title}</h1>
-        <p className="random-movie-p">{randomMovie.overview}</p>
+        <h1 className="random-movie-p">{randomMovie.overview}</h1>
         <Link to={`/movies/${randomMovie.id}`}>
           <button type="button" className="play-btn">
             Play
@@ -203,10 +207,14 @@ class Home extends Component {
       <img
         src="https://res.cloudinary.com/dmhmf156f/image/upload/v1701170785/alert-triangle_prhrds.png"
         alt="failure"
-        className="fail-img"
+        className="failure view"
       />
       <p className="fail-para">Something went wrong. Please try again</p>
-      <button type="button" className="try-btn">
+      <button
+        type="button"
+        className="try-btn"
+        onClick={this.getMovies(randomNumber)}
+      >
         Try Again
       </button>
     </div>
@@ -226,13 +234,13 @@ class Home extends Component {
           </div>
         </div>
         <div className="bottom-div">
-          <p className="movies-category">Trending Now</p>
+          <h1 className="movies-category">Trending Now</h1>
           <div className="trending-movie-div">
             {originalMoviesList.length === 0
               ? this.renderLoader()
               : this.renderTrendingVideos()}
           </div>
-          <p className="movies-category">Originals</p>
+          <h1 className="movies-category">Originals</h1>
           <div className="trending-movie-div">
             {trendingMoviesList.length === 0
               ? this.renderLoader()

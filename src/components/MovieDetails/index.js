@@ -28,53 +28,55 @@ class MovieDetails extends Component {
 
     const options = {
       method: 'GET',
-      headers: {
-        Authorization: `Bearer ${jwtToken}`,
-      },
+      headers: {Authorization: `Bearer ${jwtToken}`},
     }
 
-    const response = await fetch(url, options)
+    try {
+      const response = await fetch(url, options)
 
-    if (response.ok) {
-      const data = await response.json()
+      if (response.ok) {
+        const data = await response.json()
 
-      const camelData = {
-        adult: data.movie_details.adult,
-        backdropPath: data.movie_details.backdrop_path,
-        budget: data.movie_details.budget,
-        id: data.movie_details.id,
-        posterPath: data.movie_details.poster_path,
-        overview: data.movie_details.overview,
-        releasedDate: data.movie_details.release_date,
-        runTime: data.movie_details.runtime,
-        title: data.movie_details.title,
-        voteAverage: data.movie_details.vote_average,
-        voteCount: data.movie_details.vote_count,
-        genres: data.movie_details.genres.map(each => ({
-          id: each.id,
-          name: each.name,
-        })),
-        spokenLanguages: data.movie_details.spoken_languages.map(each => ({
-          id: each.id,
-          englishName: each.english_name,
-        })),
-        similarMovies: data.movie_details.similar_movies.map(eachMovie => ({
-          backdropPath: eachMovie.backdrop_path,
-          id: eachMovie.id,
-          overview: eachMovie.overview,
-          posterPath: eachMovie.poster_path,
-          title: eachMovie.title,
-        })),
+        const camelData = {
+          adult: data.movie_details.adult,
+          backdropPath: data.movie_details.backdrop_path,
+          budget: data.movie_details.budget,
+          id: data.movie_details.id,
+          posterPath: data.movie_details.poster_path,
+          overview: data.movie_details.overview,
+          releasedDate: data.movie_details.release_date,
+          runTime: data.movie_details.runtime,
+          title: data.movie_details.title,
+          voteAverage: data.movie_details.vote_average,
+          voteCount: data.movie_details.vote_count,
+          genres: data.movie_details.genres.map(each => ({
+            id: each.id,
+            name: each.name,
+          })),
+          spokenLanguages: data.movie_details.spoken_languages.map(each => ({
+            id: each.id,
+            englishName: each.english_name,
+          })),
+          similarMovies: data.movie_details.similar_movies.map(eachMovie => ({
+            backdropPath: eachMovie.backdrop_path,
+            id: eachMovie.id,
+            overview: eachMovie.overview,
+            posterPath: eachMovie.poster_path,
+            title: eachMovie.title,
+          })),
+        }
+
+        const setBg = () => {
+          const divEle = document.getElementById('top-div')
+          divEle.style.backgroundImage = `url(${camelData.backdropPath})`
+        }
+
+        this.setState({movieInfo: camelData, requestFailed: false}, setBg)
+      } else {
+        this.setState({requestFailed: true})
       }
-
-      const setBg = () => {
-        const divEle = document.getElementById('top-div')
-        divEle.style.backgroundImage = `url(${camelData.backdropPath})`
-      }
-
-      this.setState({movieInfo: camelData, requestFailed: false}, setBg)
-    } else {
-      this.setState({requestFailed: true})
+    } catch (error) {
+      console.log(error)
     }
   }
 
@@ -89,7 +91,7 @@ class MovieDetails extends Component {
       <img
         src="https://res.cloudinary.com/dmhmf156f/image/upload/v1701170785/alert-triangle_prhrds.png"
         alt="failure"
-        className="fail-img"
+        className="failure view"
       />
       <p className="fail-para">Something went wrong. Please try again</p>
       <button type="button" className="try-btn">
@@ -119,54 +121,56 @@ class MovieDetails extends Component {
         </div>
         <div className="main-movie-info">
           <div className="categories-div">
-            <div className="info-div">
+            <ul className="info-div">
               <h1 className="genre-h1">Genres</h1>
               {movieInfo.genres.map(each => (
                 <p className="genre-p" key={each.id}>
                   {each.name}
                 </p>
               ))}
-            </div>
-            <div className="info-div">
+            </ul>
+            <ul className="info-div">
               <h1 className="genre-h1">Audio Available</h1>
               {movieInfo.spokenLanguages.map(each => (
                 <p className="genre-p" key={each.id}>
                   {each.englishName}
                 </p>
               ))}
-            </div>
-            <div className="info-div">
+            </ul>
+            <ul className="info-div">
               <h1 className="genre-h1">Rating Count</h1>
               <p className="genre-p">{movieInfo.voteCount}</p>
               <h1 className="genre-h1">Rating Average</h1>
               <p className="genre-p">{movieInfo.voteAverage}</p>
-            </div>
-            <div className="info-div">
+            </ul>
+            <ul className="info-div">
               <h1 className="genre-h1">Budget</h1>
               <p className="genre-p">{movieInfo.budget}</p>
               <h1 className="genre-h1">Release Date</h1>
               <p className="genre-p">
                 {format(new Date(`${movieInfo.releasedDate}`), 'do MMMM yyyy')}
               </p>
-            </div>
+            </ul>
           </div>
           <div className="more-div">
             <h1 className="more-div-h1">More like this</h1>
-            <div className="movies-div">
+            <ul className="movies-div">
               {movieInfo.similarMovies.map(each => (
                 <Link
                   to={`/movies/${each.id}`}
                   className="link-style"
                   key={each.id}
                 >
-                  <img
-                    src={each.backdropPath}
-                    alt={each.title}
-                    className="movie-img"
-                  />
+                  <li className="movie-li">
+                    <img
+                      src={each.posterPath}
+                      alt={each.title}
+                      className="movie-img"
+                    />
+                  </li>
                 </Link>
               ))}
-            </div>
+            </ul>
           </div>
         </div>
         <Footer />

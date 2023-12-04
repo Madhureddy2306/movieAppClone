@@ -16,7 +16,7 @@ const Header = () => (
       const popularStyle = activeOption === 'popular' ? 'yes' : ''
 
       return (
-        <div className="header-main">
+        <nav className="header-main">
           <div className="first-div">
             <Link to="/" className="logo-link">
               <img
@@ -69,7 +69,7 @@ const Header = () => (
               />
             </Link>
           </div>
-        </div>
+        </nav>
       )
     }}
   </MoviesContext.Consumer>

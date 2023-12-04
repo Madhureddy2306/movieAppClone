@@ -29,31 +29,35 @@ class PopularPage extends Component {
       },
     }
 
-    const response = await fetch(url, options)
+    try {
+      const response = await fetch(url, options)
 
-    if (response.ok) {
-      const data = await response.json()
+      if (response.ok) {
+        const data = await response.json()
 
-      const camelData = data.results.map(eachMovie => ({
-        backdropPath: eachMovie.backdrop_path,
-        id: eachMovie.id,
-        overview: eachMovie.overview,
-        posterPath: eachMovie.poster_path,
-        title: eachMovie.title,
-      }))
+        const camelData = data.results.map(eachMovie => ({
+          backdropPath: eachMovie.backdrop_path,
+          id: eachMovie.id,
+          overview: eachMovie.overview,
+          posterPath: eachMovie.poster_path,
+          title: eachMovie.title,
+        }))
 
-      this.setState({
-        loading: false,
-        popularMoviesList: camelData,
-        requestFailed: false,
-      })
-    } else {
-      this.setState({loading: false, requestFailed: true})
+        this.setState({
+          loading: false,
+          popularMoviesList: camelData,
+          requestFailed: false,
+        })
+      } else {
+        this.setState({loading: false, requestFailed: true})
+      }
+    } catch (error) {
+      console.log(error)
     }
   }
 
   renderLoader = () => (
-    <div className="loader-container" data-testid="loader">
+    <div className="loader-container" testid="loader">
       <Loader type="TailSpin" color="#D81F26" height={40} width={40} />
     </div>
   )
@@ -62,17 +66,17 @@ class PopularPage extends Component {
     const {popularMoviesList} = this.state
 
     return (
-      <div className="popular-div">
+      <ul className="popular-div">
         {popularMoviesList.map(each => (
           <Link to={`/movies/${each.id}`} key={each.id} className="link-items">
             <img
-              src={each.backdropPath}
+              src={each.posterPath}
               alt={each.title}
               className="popular-card"
             />
           </Link>
         ))}
-      </div>
+      </ul>
     )
   }
 
@@ -81,10 +85,14 @@ class PopularPage extends Component {
       <img
         src="https://res.cloudinary.com/dmhmf156f/image/upload/v1701170785/alert-triangle_prhrds.png"
         alt="failure"
-        className="fail-img"
+        className="failure view"
       />
       <p className="fail-para">Something went wrong. Please try again</p>
-      <button type="button" className="try-btn">
+      <button
+        type="button"
+        className="try-btn"
+        onClick={this.getPopularMovies()}
+      >
         Try Again
       </button>
     </div>
