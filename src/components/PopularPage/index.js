@@ -18,18 +18,17 @@ class PopularPage extends Component {
   }
 
   getPopularMovies = async () => {
-    this.setState({loading: true})
-    const jwtToken = Cookies.get('jwt_token')
-
-    const url = 'https://apis.ccbp.in/movies-app/popular-movies'
-    const options = {
-      method: 'GET',
-      headers: {
-        Authorization: `Bearer ${jwtToken}`,
-      },
-    }
-
     try {
+      this.setState({loading: true})
+      const jwtToken = Cookies.get('jwt_token')
+
+      const url = 'https://apis.ccbp.in/movies-app/popular-movies'
+      const options = {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${jwtToken}`,
+        },
+      }
       const response = await fetch(url, options)
 
       if (response.ok) {
@@ -84,8 +83,8 @@ class PopularPage extends Component {
     <div className="loader-container">
       <img
         src="https://res.cloudinary.com/dmhmf156f/image/upload/v1701170785/alert-triangle_prhrds.png"
-        alt="failure"
-        className="failure view"
+        alt="failure view"
+        className="failure-img"
       />
       <p className="fail-para">Something went wrong. Please try again</p>
       <button

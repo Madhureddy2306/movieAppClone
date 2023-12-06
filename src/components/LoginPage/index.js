@@ -20,34 +20,36 @@ class LoginPage extends Component {
   }
 
   processLogin = async event => {
-    const {username, password} = this.state
-    event.preventDefault()
+    try {
+      const {username, password} = this.state
+      event.preventDefault()
 
-    const url = 'https://apis.ccbp.in/login'
-    const userDetails = {
-      username,
-      password,
-    }
+      const url = 'https://apis.ccbp.in/login'
+      const userDetails = {
+        username,
+        password,
+      }
 
-    const options = {
-      method: 'POST',
-      body: JSON.stringify(userDetails),
-    }
+      const options = {
+        method: 'POST',
+        body: JSON.stringify(userDetails),
+      }
+      const response = await fetch(url, options)
+      const data = await response.json()
 
-    const response = await fetch(url, options)
-    const data = await response.json()
-    console.log(data)
-
-    const {history} = this.props
-    if (response.ok) {
-      Cookies.set('jwt_token', data.jwt_token, {expires: 10})
-      this.setState({displayErrorMsg: false, errorMsg: ''})
-      history.replace('/')
-    } else {
-      this.setState({
-        displayErrorMsg: true,
-        errorMsg: data.error_msg,
-      })
+      const {history} = this.props
+      if (response.ok) {
+        Cookies.set('jwt_token', data.jwt_token, {expires: 10})
+        this.setState({displayErrorMsg: false, errorMsg: ''})
+        history.replace('/')
+      } else {
+        this.setState({
+          displayErrorMsg: true,
+          errorMsg: data.error_msg,
+        })
+      }
+    } catch (error) {
+      console.log(error)
     }
   }
 
@@ -66,7 +68,7 @@ class LoginPage extends Component {
           alt="login website logo"
           className="movie-icon"
         />
-        <div className="botto-div">
+        <div className="bott-div">
           <form className="login-form">
             <h1 className="login-h1">Login</h1>
             <label htmlFor="username" className="label-ele">

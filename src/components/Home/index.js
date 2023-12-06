@@ -15,11 +15,14 @@ class Home extends Component {
   state = {
     originalMoviesList: [],
     trendingMoviesList: [],
+    requestFailed: false,
   }
 
   componentDidMount() {
     this.getMovies(randomNumber)
   }
+
+  componentWillUnmount() {}
 
   getMovies = async randomNum => {
     const jwtToken = Cookies.get('jwt_token')
@@ -38,38 +41,55 @@ class Home extends Component {
       const originalsResponse = await fetch(originalsUrl, options)
       const originalsData = await originalsResponse.json()
 
-      const originalsCamelData = originalsData.results.map(eachMovie => ({
-        backdropPath: eachMovie.backdrop_path,
-        id: eachMovie.id,
-        overview: eachMovie.overview,
-        posterPath: eachMovie.poster_path,
-        title: eachMovie.title,
-      }))
+      if (originalsResponse.ok) {
+        const originalsCamelData = originalsData.results.map(eachMovie => ({
+          backdropPath: eachMovie.backdrop_path,
+          id: eachMovie.id,
+          overview: eachMovie.overview,
+          posterPath: eachMovie.poster_path,
+          title: eachMovie.title,
+        }))
 
+        const setImage = () => {
+          const bgEle = document.getElementById('random')
+          const imgUrl = originalsCamelData[randomNum].backdropPath
+          bgEle.style.backgroundImage = `url(${imgUrl})`
+        }
+
+        this.setState(
+          {
+            originalMoviesList: originalsCamelData,
+            requestFailed: false,
+          },
+          setImage,
+        )
+      } else {
+        this.setState({requestFailed: true})
+      }
+    } catch (error) {
+      console.log(error)
+    }
+
+    try {
       const trendingResponse = await fetch(trendingUrl, options)
       const data = await trendingResponse.json()
 
-      const trendingCamelData = data.results.map(eachMovie => ({
-        backdropPath: eachMovie.backdrop_path,
-        id: eachMovie.id,
-        overview: eachMovie.overview,
-        posterPath: eachMovie.poster_path,
-        title: eachMovie.title,
-      }))
+      if (trendingResponse.ok) {
+        const trendingCamelData = data.results.map(eachMovie => ({
+          backdropPath: eachMovie.backdrop_path,
+          id: eachMovie.id,
+          overview: eachMovie.overview,
+          posterPath: eachMovie.poster_path,
+          title: eachMovie.title,
+        }))
 
-      const setImage = () => {
-        const bgEle = document.getElementById('random')
-        const imgUrl = originalsCamelData[randomNum].backdropPath
-        bgEle.style.backgroundImage = `url(${imgUrl})`
-      }
-
-      this.setState(
-        {
-          originalMoviesList: originalsCamelData,
+        this.setState({
           trendingMoviesList: trendingCamelData,
-        },
-        setImage,
-      )
+          requestFailed: false,
+        })
+      } else {
+        this.setState({requestFailed: true})
+      }
     } catch (error) {
       console.log(error)
     }
@@ -206,8 +226,8 @@ class Home extends Component {
     <div className="loader-container">
       <img
         src="https://res.cloudinary.com/dmhmf156f/image/upload/v1701170785/alert-triangle_prhrds.png"
-        alt="failure"
-        className="failure view"
+        alt="failure view"
+        className="failure-img"
       />
       <p className="fail-para">Something went wrong. Please try again</p>
       <button
@@ -221,30 +241,42 @@ class Home extends Component {
   )
 
   render() {
-    const {originalMoviesList, trendingMoviesList} = this.state
+    const {originalMoviesList, trendingMoviesList, requestFailed} = this.state
 
     return (
       <div className="home-main">
         <Header />
         <div className="random-movie" id="random">
           <div className="movie-div">
-            {originalMoviesList.length === 0
-              ? this.renderLoader()
-              : this.renderRandomMovie(randomNumber)}
+            {originalMoviesList.length === 0 ? (
+              <>
+                {requestFailed ? this.renderFailureView() : this.renderLoader()}
+              </>
+            ) : (
+              this.renderRandomMovie(randomNumber)
+            )}
           </div>
         </div>
         <div className="bottom-div">
           <h1 className="movies-category">Trending Now</h1>
           <div className="trending-movie-div">
-            {originalMoviesList.length === 0
-              ? this.renderLoader()
-              : this.renderTrendingVideos()}
+            {originalMoviesList.length === 0 ? (
+              <>
+                {requestFailed ? this.renderFailureView() : this.renderLoader()}
+              </>
+            ) : (
+              this.renderTrendingVideos()
+            )}
           </div>
           <h1 className="movies-category">Originals</h1>
           <div className="trending-movie-div">
-            {trendingMoviesList.length === 0
-              ? this.renderLoader()
-              : this.renderOriginalVideos()}
+            {trendingMoviesList.length === 0 ? (
+              <>
+                {requestFailed ? this.renderFailureView() : this.renderLoader()}
+              </>
+            ) : (
+              this.renderOriginalVideos()
+            )}
           </div>
           <Footer />
         </div>
