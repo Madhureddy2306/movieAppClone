@@ -9,11 +9,11 @@
   align-items: center;
   margin: 0px;
 }
-.header-main:hover {
-  opacity: 1;
-}
+
 .first-div {
-  width: 28%;
+  list-style-type: none;
+  padding-left: 0px;
+  width: 30%;
   height: 100%;
   display: flex;
   justify-content: space-between;

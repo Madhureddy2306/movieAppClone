@@ -93,11 +93,7 @@ class MovieDetails extends Component {
         className="failure-img"
       />
       <p className="fail-para">Something went wrong. Please try again</p>
-      <button
-        type="button"
-        className="try-btn"
-        onClick={this.getMovieDetails()}
-      >
+      <button type="button" className="try-btn" onClick={this.getMovieDetails}>
         Try Again
       </button>
     </div>
@@ -111,11 +107,11 @@ class MovieDetails extends Component {
         <div className="movie-top-div" id="top-div">
           <h1 className="top-div-h1">{movieInfo.title}</h1>
           <div className="details-div">
-            <p className="top-div-p">{`${parseInt(movieInfo.runTime / 60)}h ${
+            <p className="details-p">{`${parseInt(movieInfo.runTime / 60)}h ${
               movieInfo.runTime % 60
             }min`}</p>
-            <p className="ua-p">{movieInfo.adult ? 'A' : 'A/U'}</p>
-            <p className="top-div-p">{movieInfo.releasedDate.slice(0, 4)}</p>
+            <p className="ua-p">{movieInfo.adult ? `A` : `A/U`}</p>
+            <p className="details-p">{movieInfo.releasedDate.slice(0, 4)}</p>
           </div>
           <p className="top-div-p">{movieInfo.overview}</p>
           <button type="button" className="top-div-play-btn">

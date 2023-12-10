@@ -1,6 +1,6 @@
 .popular-main {
   height: 100vh;
-  width: 100vw;
+  width: 100%;
   background-color: #000000;
 }
 .bottom-contained {
@@ -20,7 +20,7 @@
   align-items: center;
 }
 .popular-div {
-  height: 90%;
+  height: 85%;
   width: 100%;
   list-style-type: none;
   padding-left: 0px;
@@ -29,6 +29,8 @@
   align-items: center;
   flex-wrap: wrap;
   overflow-y: auto;
+  margin-top: 0px;
+  margin-bottom: 0px;
 }
 .link-items {
   width: 24%;

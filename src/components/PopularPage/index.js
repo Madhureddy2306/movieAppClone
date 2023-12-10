@@ -68,11 +68,13 @@ class PopularPage extends Component {
       <ul className="popular-div">
         {popularMoviesList.map(each => (
           <Link to={`/movies/${each.id}`} key={each.id} className="link-items">
-            <img
-              src={each.posterPath}
-              alt={each.title}
-              className="popular-card"
-            />
+            <li className="popular-li">
+              <img
+                src={each.posterPath}
+                alt={each.title}
+                className="popular-card"
+              />
+            </li>
           </Link>
         ))}
       </ul>
@@ -87,11 +89,7 @@ class PopularPage extends Component {
         className="failure-img"
       />
       <p className="fail-para">Something went wrong. Please try again</p>
-      <button
-        type="button"
-        className="try-btn"
-        onClick={this.getPopularMovies()}
-      >
+      <button type="button" className="try-btn" onClick={this.getPopularMovies}>
         Try Again
       </button>
     </div>

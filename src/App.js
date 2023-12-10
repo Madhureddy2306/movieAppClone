@@ -6,6 +6,7 @@ import LoginPage from './components/LoginPage'
 import Home from './components/Home'
 import PopularPage from './components/PopularPage'
 import MovieDetails from './components/MovieDetails'
+import NotFound from './components/NotFound'
 import './App.css'
 
 const App = () => {
@@ -27,6 +28,7 @@ const App = () => {
         <LoginChecking exact path="/" component={Home} />
         <LoginChecking exact path="/popular" component={PopularPage} />
         <LoginChecking exact path="/movies/:movieId" component={MovieDetails} />
+        <Route component={NotFound} />
       </Switch>
     </MoviesContext.Provider>
   )

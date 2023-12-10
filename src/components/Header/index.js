@@ -17,7 +17,7 @@ const Header = () => (
 
       return (
         <nav className="header-main">
-          <div className="first-div">
+          <ul className="first-div">
             <Link to="/" className="logo-link">
               <img
                 src="https://res.cloudinary.com/dmhmf156f/image/upload/v1701065357/Group_7399_r1dyde.svg"
@@ -27,29 +27,27 @@ const Header = () => (
                 id="home"
               />
             </Link>
-            <Link
-              to="/"
-              className={`link-item ${homeStyle}`}
-              id="home"
-              onClick={triggerOption}
-            >
-              Home
+            <Link to="/" className="link-item">
+              <p className={`${homeStyle}`} id="home" onClick={triggerOption}>
+                Home
+              </p>
             </Link>
-            <Link
-              to="/popular"
-              className={`link-item ${popularStyle}`}
-              id="popular"
-              onClick={triggerOption}
-            >
-              Popular
+            <Link to="/popular" className="link-item">
+              <p
+                id="popular"
+                onClick={triggerOption}
+                className={`${popularStyle}`}
+              >
+                Popular
+              </p>
             </Link>
-          </div>
+          </ul>
           <div className="second-div">
             <Link to="/search" className="link-btn">
               <button
                 type="button"
                 className="search-btn"
-                data-testid="searchButton"
+                testid="searchButton"
               >
                 <HiOutlineSearch className="search-icon" />
               </button>
@@ -61,7 +59,7 @@ const Header = () => (
                 className="profile-img"
               />
             </Link>
-            <Link to="/" className="link-queue">
+            <Link to="/account" className="link-queue">
               <img
                 src="https://res.cloudinary.com/dmhmf156f/image/upload/v1701153539/add-to-queue_1_ws32q3.png"
                 alt="queue"

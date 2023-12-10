@@ -38,11 +38,24 @@ class Home extends Component {
     }
 
     try {
-      const originalsResponse = await fetch(originalsUrl, options)
-      const originalsData = await originalsResponse.json()
+      const mainResponse = await Promise.all([
+        fetch(originalsUrl, options),
+        fetch(trendingUrl, options),
+      ])
 
-      if (originalsResponse.ok) {
+      const originalsData = await mainResponse[0].json()
+      const trendingData = await mainResponse[1].json()
+
+      if (mainResponse[0].ok && mainResponse[1].ok) {
         const originalsCamelData = originalsData.results.map(eachMovie => ({
+          backdropPath: eachMovie.backdrop_path,
+          id: eachMovie.id,
+          overview: eachMovie.overview,
+          posterPath: eachMovie.poster_path,
+          title: eachMovie.title,
+        }))
+
+        const trendingCamelData = trendingData.results.map(eachMovie => ({
           backdropPath: eachMovie.backdrop_path,
           id: eachMovie.id,
           overview: eachMovie.overview,
@@ -59,23 +72,26 @@ class Home extends Component {
         this.setState(
           {
             originalMoviesList: originalsCamelData,
+            trendingMoviesList: trendingCamelData,
             requestFailed: false,
           },
           setImage,
         )
-      } else {
-        this.setState({requestFailed: true})
-      }
-    } catch (error) {
-      console.log(error)
-    }
+      } else if (mainResponse[0].ok && !mainResponse[1].ok) {
+        const originalsCamelData = originalsData.results.map(eachMovie => ({
+          backdropPath: eachMovie.backdrop_path,
+          id: eachMovie.id,
+          overview: eachMovie.overview,
+          posterPath: eachMovie.poster_path,
+          title: eachMovie.title,
+        }))
 
-    try {
-      const trendingResponse = await fetch(trendingUrl, options)
-      const data = await trendingResponse.json()
-
-      if (trendingResponse.ok) {
-        const trendingCamelData = data.results.map(eachMovie => ({
+        this.setState({
+          originalMoviesList: originalsCamelData,
+          requestFailed: false,
+        })
+      } else if (!mainResponse[0].ok && mainResponse[1].ok) {
+        const trendingCamelData = trendingData.results.map(eachMovie => ({
           backdropPath: eachMovie.backdrop_path,
           id: eachMovie.id,
           overview: eachMovie.overview,
@@ -138,7 +154,7 @@ class Home extends Component {
         {
           breakpoint: 600,
           settings: {
-            slidesToShow: 3,
+            slidesToShow: 4,
             slidesToScroll: 1,
             initialSlide: 3,
           },
@@ -146,7 +162,7 @@ class Home extends Component {
         {
           breakpoint: 480,
           settings: {
-            slidesToShow: 3,
+            slidesToShow: 4,
             slidesToScroll: 1,
           },
         },
@@ -154,16 +170,10 @@ class Home extends Component {
     }
 
     return (
-      <Slider {...settings} className="slider">
+      <Slider {...settings}>
         {trendingMoviesList.map(each => (
           <Link to={`/movies/${each.id}`} key={each.id} className="link-card">
-            <div className="text">
-              <img
-                src={each.posterPath}
-                alt={each.title}
-                className="img-slide"
-              />
-            </div>
+            <img src={each.posterPath} alt={each.title} className="img-slide" />
           </Link>
         ))}
       </Slider>
@@ -190,7 +200,7 @@ class Home extends Component {
         {
           breakpoint: 600,
           settings: {
-            slidesToShow: 3,
+            slidesToShow: 4,
             slidesToScroll: 1,
             initialSlide: 3,
           },
@@ -198,7 +208,7 @@ class Home extends Component {
         {
           breakpoint: 480,
           settings: {
-            slidesToShow: 3,
+            slidesToShow: 4,
             slidesToScroll: 1,
           },
         },
@@ -230,11 +240,7 @@ class Home extends Component {
         className="failure-img"
       />
       <p className="fail-para">Something went wrong. Please try again</p>
-      <button
-        type="button"
-        className="try-btn"
-        onClick={this.getMovies(randomNumber)}
-      >
+      <button type="button" className="try-btn" onClick={this.getMovies}>
         Try Again
       </button>
     </div>
