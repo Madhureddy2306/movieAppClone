@@ -77,8 +77,7 @@ class Home extends Component {
           },
           setImage,
         )
-      }
-      if (mainResponse[0].ok && mainResponse[1].ok === false) {
+      } else if (mainResponse[0].ok && mainResponse[1].ok === false) {
         const originalsCamelData = originalsData.results.map(eachMovie => ({
           backdropPath: eachMovie.backdrop_path,
           id: eachMovie.id,
@@ -91,8 +90,7 @@ class Home extends Component {
           originalMoviesList: originalsCamelData,
           requestFailed: false,
         })
-      }
-      if (mainResponse[0].ok === false && mainResponse[1].ok) {
+      } else if (mainResponse[0].ok === false && mainResponse[1].ok) {
         const trendingCamelData = trendingData.results.map(eachMovie => ({
           backdropPath: eachMovie.backdrop_path,
           id: eachMovie.id,
@@ -114,7 +112,7 @@ class Home extends Component {
   }
 
   renderLoader = () => (
-    <div className="loader-container" testid="loader">
+    <div className="loader-container-home" testid="loader">
       <Loader type="TailSpin" color="#D81F26" height={40} width={40} />
     </div>
   )
@@ -156,7 +154,7 @@ class Home extends Component {
         {
           breakpoint: 600,
           settings: {
-            slidesToShow: 4,
+            slidesToShow: 3,
             slidesToScroll: 1,
             initialSlide: 3,
           },
@@ -164,7 +162,7 @@ class Home extends Component {
         {
           breakpoint: 480,
           settings: {
-            slidesToShow: 4,
+            slidesToShow: 2,
             slidesToScroll: 1,
           },
         },
@@ -202,7 +200,7 @@ class Home extends Component {
         {
           breakpoint: 600,
           settings: {
-            slidesToShow: 4,
+            slidesToShow: 3,
             slidesToScroll: 1,
             initialSlide: 3,
           },
@@ -210,7 +208,7 @@ class Home extends Component {
         {
           breakpoint: 480,
           settings: {
-            slidesToShow: 4,
+            slidesToShow: 2,
             slidesToScroll: 1,
           },
         },
@@ -229,7 +227,7 @@ class Home extends Component {
   }
 
   renderFailureView = () => (
-    <div className="loader-container">
+    <div className="failure-container">
       <img
         src="https://res.cloudinary.com/dmhmf156f/image/upload/v1701170785/alert-triangle_prhrds.png"
         alt="failure view"
@@ -249,39 +247,34 @@ class Home extends Component {
       <div className="home-main">
         <Header />
         <div className="random-movie" id="random">
-          <div className="movie-div">
-            {originalMoviesList.length === 0 ? (
-              <>
-                {requestFailed ? this.renderFailureView() : this.renderLoader()}
-              </>
-            ) : (
-              this.renderRandomMovie(randomNumber)
-            )}
-          </div>
+          {originalMoviesList.length === 0 ? (
+            <>
+              {requestFailed ? this.renderFailureView() : this.renderLoader()}
+            </>
+          ) : (
+            this.renderRandomMovie(randomNumber)
+          )}
         </div>
+
         <div className="bottom-div">
           <h1 className="movies-category">Trending Now</h1>
-          <div className="trending-movie-div">
-            {originalMoviesList.length === 0 ? (
-              <>
-                {requestFailed ? this.renderFailureView() : this.renderLoader()}
-              </>
-            ) : (
-              this.renderTrendingVideos()
-            )}
-          </div>
+          {originalMoviesList.length === 0 ? (
+            <>
+              {requestFailed ? this.renderFailureView() : this.renderLoader()}
+            </>
+          ) : (
+            this.renderTrendingVideos()
+          )}
           <h1 className="movies-category">Originals</h1>
-          <div className="trending-movie-div">
-            {trendingMoviesList.length === 0 ? (
-              <>
-                {requestFailed ? this.renderFailureView() : this.renderLoader()}
-              </>
-            ) : (
-              this.renderOriginalVideos()
-            )}
-          </div>
-          <Footer />
+          {trendingMoviesList.length === 0 ? (
+            <>
+              {requestFailed ? this.renderFailureView() : this.renderLoader()}
+            </>
+          ) : (
+            this.renderOriginalVideos()
+          )}
         </div>
+        <Footer />
       </div>
     )
   }

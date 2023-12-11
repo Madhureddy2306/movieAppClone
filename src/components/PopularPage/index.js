@@ -107,10 +107,10 @@ class PopularPage extends Component {
               {requestFailed
                 ? this.renderFailureView()
                 : this.renderPopularVideos()}
-              <Footer />
             </>
           )}
         </div>
+        <Footer />
       </div>
     )
   }

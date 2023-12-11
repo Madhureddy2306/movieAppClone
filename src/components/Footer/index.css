@@ -6,6 +6,7 @@
   align-items: center;
   margin-left: auto;
   margin-right: auto;
+  margin-top: 0px;
 }
 .icons {
   color: #ffffff;
@@ -16,7 +17,7 @@
   color: #ffffff;
   font-size: 14px;
   font-weight: 500;
-  margin-top: 0.5%;
+  margin-top: 2px;
   text-align: center;
 }
 

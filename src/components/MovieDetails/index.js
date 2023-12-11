@@ -173,7 +173,6 @@ class MovieDetails extends Component {
             </ul>
           </div>
         </div>
-        <Footer />
       </>
     )
   }
@@ -193,6 +192,7 @@ class MovieDetails extends Component {
             this.renderMovieBody()
           )}
         </div>
+        <Footer />
       </div>
     )
   }
