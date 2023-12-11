@@ -51,19 +51,11 @@
 .movies-category {
   color: #ffffff;
   font-size: 16px;
-  font-weight: 500;
   align-self: flex-start;
   margin-bottom: 0.5%;
   margin-top: 0px;
 }
 
-.contact-us {
-  color: #ffffff;
-  font-size: 12px;
-  font-weight: 500;
-  margin-top: 0.5%;
-  text-align: center;
-}
 .slider {
   width: 92%;
   margin: auto;
@@ -90,7 +82,6 @@
   color: #ffffff;
   font-size: 24px;
   font-weight: 600;
-  font-family: 'HK Grotesk';
   margin-bottom: 0px;
 }
 
@@ -124,7 +115,6 @@
   color: #ffffff;
   font-size: 10px;
   font-weight: 500;
-  font-family: 'HK Grotesk';
 }
 .try-btn {
   height: 20px;

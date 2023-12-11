@@ -77,7 +77,8 @@ class Home extends Component {
           },
           setImage,
         )
-      } else if (mainResponse[0].ok && !mainResponse[1].ok) {
+      }
+      if (mainResponse[0].ok && mainResponse[1].ok === false) {
         const originalsCamelData = originalsData.results.map(eachMovie => ({
           backdropPath: eachMovie.backdrop_path,
           id: eachMovie.id,
@@ -90,7 +91,8 @@ class Home extends Component {
           originalMoviesList: originalsCamelData,
           requestFailed: false,
         })
-      } else if (!mainResponse[0].ok && mainResponse[1].ok) {
+      }
+      if (mainResponse[0].ok === false && mainResponse[1].ok) {
         const trendingCamelData = trendingData.results.map(eachMovie => ({
           backdropPath: eachMovie.backdrop_path,
           id: eachMovie.id,
@@ -173,7 +175,7 @@ class Home extends Component {
       <Slider {...settings}>
         {trendingMoviesList.map(each => (
           <Link to={`/movies/${each.id}`} key={each.id} className="link-card">
-            <img src={each.posterPath} alt={each.title} className="img-slide" />
+            <img src={each.posterPath} alt={each.name} className="img-slide" />
           </Link>
         ))}
       </Slider>
@@ -216,16 +218,10 @@ class Home extends Component {
     }
 
     return (
-      <Slider {...settings} className="slider">
+      <Slider {...settings}>
         {originalMoviesList.map(each => (
           <Link to={`/movies/${each.id}`} key={each.id} className="link-card">
-            <li className="text">
-              <img
-                src={each.posterPath}
-                alt={each.title}
-                className="img-slide"
-              />
-            </li>
+            <img src={each.posterPath} alt={each.name} className="img-slide" />
           </Link>
         ))}
       </Slider>

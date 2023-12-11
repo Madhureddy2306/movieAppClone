@@ -1,0 +1,67 @@
+.account-main {
+  height: 100vh;
+  width: 100vw;
+  background-color: #000000;
+  font-family: 'sans-serif';
+}
+.middle {
+  height: 80%;
+  width: 100%;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  padding-left: 5%;
+  padding-right: 5%;
+  padding-top: 0px;
+}
+.account-h1 {
+  color: #131313;
+  font-size: 30px;
+  align-self: flex-start;
+}
+.hr-line {
+  background-color: #cbd5e1;
+  width: 100%;
+  height: 2px;
+}
+.flex {
+  height: 15%;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+}
+.flex-1 {
+  width: 15%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.member {
+  color: #94a3b8;
+  font-size: 18px;
+  align-self: flex-start;
+  margin-right: 4%;
+  font-weight: 500;
+  margin: 0px;
+}
+.member-2 {
+  color: #1e293b;
+  font-weight: 350;
+  font-size: 18px;
+  margin-top: 0px;
+}
+.logout {
+  background-color: #e50914;
+  height: 8%;
+  width: 12%;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  margin-top: 2%;
+  cursor: pointer;
+}

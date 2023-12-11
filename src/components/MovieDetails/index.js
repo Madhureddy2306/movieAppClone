@@ -101,6 +101,7 @@ class MovieDetails extends Component {
 
   renderMovieBody = () => {
     const {movieInfo} = this.state
+    console.log(movieInfo)
 
     return (
       <>

@@ -6,14 +6,21 @@ import LoginPage from './components/LoginPage'
 import Home from './components/Home'
 import PopularPage from './components/PopularPage'
 import MovieDetails from './components/MovieDetails'
+import SearchRoute from './components/Search'
+import Account from './components/Account'
 import NotFound from './components/NotFound'
 import './App.css'
 
 const App = () => {
   const [activeOption, updateActiveOption] = useState('home')
+  const [searchWord, updateSearchWord] = useState('')
 
   const updateOption = id => {
     updateActiveOption(id)
+  }
+
+  const updateWord = id => {
+    updateSearchWord(id)
   }
 
   return (
@@ -21,6 +28,8 @@ const App = () => {
       value={{
         activeOption,
         updateActiveOption: updateOption,
+        searchWord,
+        updateSearchWord: updateWord,
       }}
     >
       <Switch>
@@ -28,6 +37,8 @@ const App = () => {
         <LoginChecking exact path="/" component={Home} />
         <LoginChecking exact path="/popular" component={PopularPage} />
         <LoginChecking exact path="/movies/:movieId" component={MovieDetails} />
+        <LoginChecking exact path="/search" component={SearchRoute} />
+        <LoginChecking exact path="/account" component={Account} />
         <Route component={NotFound} />
       </Switch>
     </MoviesContext.Provider>

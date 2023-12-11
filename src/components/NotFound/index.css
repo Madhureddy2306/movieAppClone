@@ -1,7 +1,9 @@
 .not-found-main {
   height: 100vh;
   width: 100vw;
-  background-color: #000000;
+  background-image: url('https://res.cloudinary.com/dmhmf156f/image/upload/v1702276781/snow-removal-machine_yplrkl.png');
+  background-size: cover;
+  background-position: center;
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -9,8 +11,8 @@
 }
 .not-h1 {
   color: #ffffff;
-  font-family: 'Roboto';
-  font-size: 28px;
+  font-size: 36px;
+  margin-bottom: 0px;
 }
 .not-p {
   color: #ffffff;
@@ -26,6 +28,6 @@
   border-radius: 5px;
   background-color: #ffffff;
   color: #000000;
-  font-family: 'Roboto';
   font-weight: 600;
+  cursor: pointer;
 }
