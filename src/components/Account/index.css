@@ -5,7 +5,7 @@
   font-family: 'sans-serif';
 }
 .middle {
-  height: 80%;
+  height: 78%;
   width: 100%;
   background-color: #ffffff;
   display: flex;
@@ -15,6 +15,7 @@
   padding-left: 5%;
   padding-right: 5%;
   padding-top: 0px;
+  margin-bottom: 1%;
 }
 .account-h1 {
   color: #131313;
@@ -33,7 +34,7 @@
   justify-content: flex-start;
 }
 .flex-1 {
-  width: 15%;
+  width: 14%;
   height: 100%;
   display: flex;
   justify-content: flex-start;
@@ -42,16 +43,16 @@
 }
 .member {
   color: #94a3b8;
-  font-size: 18px;
+  font-size: 20px;
   align-self: flex-start;
-  margin-right: 4%;
+  margin-right: 2%;
   font-weight: 500;
   margin: 0px;
 }
 .member-2 {
   color: #1e293b;
   font-weight: 350;
-  font-size: 18px;
+  font-size: 20px;
   margin-top: 0px;
 }
 .logout {
@@ -64,4 +65,94 @@
   font-size: 16px;
   margin-top: 2%;
   cursor: pointer;
+}
+
+@media screen and (max-width: 576px) {
+  .flex {
+    height: 12%;
+  }
+  .flex-1 {
+    width: 25%;
+    margin-right: 1%;
+  }
+  .member {
+    font-size: 14px;
+  }
+  .logout {
+    width: 18%;
+    height: 5%;
+    font-size: 12px;
+  }
+  .member-2 {
+    font-size: 16px;
+  }
+}
+
+@media screen and (min-width: 576px) and (max-width: 768px) {
+  .flex {
+    height: 12%;
+  }
+  .flex-1 {
+    width: 20%;
+    margin-right: 2%;
+  }
+  .member {
+    font-size: 20px;
+  }
+  .logout {
+    width: 18%;
+    height: 6%;
+    font-size: 12px;
+  }
+  .member-2 {
+    font-size: 20px;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 990px) {
+  .account-h1 {
+    font-size: 32px;
+  }
+  .flex {
+    height: 15%;
+  }
+  .flex-1 {
+    width: 20%;
+    margin-right: 2%;
+  }
+  .member {
+    font-size: 22px;
+  }
+  .logout {
+    width: 18%;
+    height: 6%;
+    font-size: 14px;
+  }
+  .member-2 {
+    font-size: 22px;
+  }
+}
+
+@media screen and (min-width: 990px) and (max-width: 1200px) {
+  .account-h1 {
+    font-size: 34px;
+  }
+  .flex {
+    height: 15%;
+  }
+  .flex-1 {
+    width: 20%;
+    margin-right: 2%;
+  }
+  .member {
+    font-size: 25px;
+  }
+  .logout {
+    width: 18%;
+    height: 6%;
+    font-size: 18px;
+  }
+  .member-2 {
+    font-size: 25px;
+  }
 }

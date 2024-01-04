@@ -24,8 +24,8 @@
   background-color: transparent;
 }
 .login-form {
-  height: 60%;
-  width: 45%;
+  height: 65%;
+  width: 40%;
   border-radius: 8px;
   padding: 2%;
   opacity: 0.8;
@@ -69,6 +69,8 @@
   color: #f8fafc;
   margin-top: 5%;
   cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
 }
 .login-btn-small {
   background-color: #e50914;

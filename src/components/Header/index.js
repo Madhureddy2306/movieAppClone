@@ -6,16 +6,10 @@ import './index.css'
 const Header = () => (
   <MoviesContext.Consumer>
     {value => {
-      const {activeOption, updateActiveOption, updateSearchWord} = value
+      const {activeOption, updateActiveOption} = value
 
       const triggerOption = event => {
         updateActiveOption(event.target.id)
-        updateSearchWord('')
-      }
-
-      const setWord = () => {
-        const inputEle = document.getElementById('input')
-        updateSearchWord(inputEle.value)
       }
 
       const homeStyle = activeOption === 'home' ? 'yes' : ''
@@ -24,8 +18,8 @@ const Header = () => (
       const profileStyle = activeOption === 'search' ? 'plus-link' : ''
 
       return (
-        <ul className="header-main">
-          <div className="first-div">
+        <nav className="header-main">
+          <ul className="first-div">
             <Link to="/" className="logo-link">
               <img
                 src="https://res.cloudinary.com/dmhmf156f/image/upload/v1701065357/Group_7399_r1dyde.svg"
@@ -51,7 +45,7 @@ const Header = () => (
             >
               Popular
             </Link>
-          </div>
+          </ul>
           <ul className={`second-div ${searchStyle}`}>
             {activeOption === 'search' ? (
               <div className="search-div">
@@ -63,7 +57,6 @@ const Header = () => (
                 />
                 <button
                   type="button"
-                  onClick={setWord}
                   className="search-icon-btn"
                   testid="searchButton"
                 >
@@ -112,7 +105,7 @@ const Header = () => (
               />
             </Link>
           </ul>
-        </ul>
+        </nav>
       )
     }}
   </MoviesContext.Consumer>

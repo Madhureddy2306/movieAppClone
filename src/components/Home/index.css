@@ -12,12 +12,18 @@
   background-size: cover;
   background-position: center;
   margin-bottom: 0px;
+}
+.random-div {
+  height: 100%;
+  width: 100%;
+  background-color: transparent;
   display: flex;
   justify-content: flex-end;
   flex-direction: column;
   align-items: flex-start;
   padding-left: 5%;
-  padding-bottom: 5%;
+  padding-right: 5%;
+  padding-bottom: 1%;
 }
 .bottom-div {
   height: 50%;
@@ -27,9 +33,17 @@
   padding-right: 5%;
   padding-top: 1%;
 }
+.pass-1 {
+  height: 100%;
+  width: 100%;
+}
+.pass {
+  height: 35%;
+  width: 100%;
+}
 
 .loader-container-home {
-  height: 30%;
+  height: 100%;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -75,14 +89,15 @@
 
 .random-movie-p {
   color: #ffffff;
-  font-size: 12px;
+  font-size: 14px;
   width: 45%;
-  font-weight: 500;
+  font-weight: 400;
 }
 .link-btn {
   height: 20px;
   width: 40px;
   text-decoration-color: transparent;
+  cursor: pointer;
 }
 .play-btn {
   height: 100%;
@@ -96,13 +111,14 @@
   cursor: pointer;
 }
 .failure-container {
-  height: 100%;
+  height: 30%;
   width: 100%;
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  background-color: #000000;
+  background-color: #131313;
+  margin: auto;
 }
 .failure-img {
   height: 25px;
@@ -121,34 +137,42 @@
   border: none;
   font-size: 8px;
   font-weight: 600;
+  cursor: pointer;
 }
 
 @media (max-width: 576px) {
+  .random-div {
+    justify-content: center;
+  }
+  .random-movie {
+    margin-bottom: 2%;
+  }
   .random-movie-h1 {
-    font-size: 14px;
+    font-size: 26px;
   }
   .random-movie-p {
-    font-size: 8px;
+    font-size: 10px;
     width: 95%;
-    font-weight: 600;
+    font-weight: 500;
   }
   .slider {
-    width: 90%;
+    width: 94%;
+    margin: auto;
+  }
+  .movies-category {
+    margin: 2%;
+    font-size: 18px;
   }
   .play-btn {
     background-color: #ffffff;
     color: #171f46;
-  }
-  .trending-movie-div {
-    height: 29%;
-    margin-bottom: 1%;
   }
   .link-card {
     height: 100%;
     width: 100%;
   }
   .img-slide {
-    height: 80px;
+    height: 100px;
     margin-top: 2px;
   }
 }
@@ -270,7 +294,7 @@
     width: 98%;
   }
   .img-slide {
-    height: 100px;
+    height: 120px;
     margin-top: 2px;
   }
 }

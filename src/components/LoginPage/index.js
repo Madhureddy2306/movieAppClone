@@ -106,6 +106,9 @@ class LoginPage extends Component {
             >
               Sign in
             </button>
+            <p className="label-ele">
+              Login : user - rahul , password - rahul@2021
+            </p>
           </form>
         </div>
       </div>

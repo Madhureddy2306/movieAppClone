@@ -13,14 +13,9 @@ import './App.css'
 
 const App = () => {
   const [activeOption, updateActiveOption] = useState('home')
-  const [searchWord, updateSearchWord] = useState('')
 
   const updateOption = id => {
     updateActiveOption(id)
-  }
-
-  const updateWord = id => {
-    updateSearchWord(id)
   }
 
   return (
@@ -28,8 +23,6 @@ const App = () => {
       value={{
         activeOption,
         updateActiveOption: updateOption,
-        searchWord,
-        updateSearchWord: updateWord,
       }}
     >
       <Switch>

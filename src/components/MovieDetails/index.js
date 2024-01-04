@@ -101,7 +101,7 @@ class MovieDetails extends Component {
 
   renderMovieBody = () => {
     const {movieInfo} = this.state
-    console.log(movieInfo)
+    const adultOk = movieInfo.adult ? 'A.' : 'A/U'
 
     return (
       <>
@@ -111,7 +111,7 @@ class MovieDetails extends Component {
             <p className="details-p">{`${parseInt(movieInfo.runTime / 60)}h ${
               movieInfo.runTime % 60
             }min`}</p>
-            <p className="ua-p">{movieInfo.adult ? `A` : `A/U`}</p>
+            <p className="ua-p">{adultOk}</p>
             <p className="details-p">{movieInfo.releasedDate.slice(0, 4)}</p>
           </div>
           <p className="top-div-p">{movieInfo.overview}</p>
@@ -181,19 +181,21 @@ class MovieDetails extends Component {
     const {movieInfo, requestFailed} = this.state
 
     return (
-      <div className="movie-details-main">
-        <Header />
-        <div className="movie-info-div">
-          {movieInfo.length === 0 ? (
-            <>
-              {requestFailed ? this.renderFailureView() : this.renderLoader()}
-            </>
-          ) : (
-            this.renderMovieBody()
-          )}
+      <>
+        <div className="movie-details-main">
+          <Header />
+          <div className="movie-info-div">
+            {movieInfo.length === 0 ? (
+              <>
+                {requestFailed ? this.renderFailureView() : this.renderLoader()}
+              </>
+            ) : (
+              this.renderMovieBody()
+            )}
+          </div>
+          <Footer />
         </div>
-        <Footer />
-      </div>
+      </>
     )
   }
 }

@@ -2,7 +2,7 @@ import {Component} from 'react'
 import {Link} from 'react-router-dom'
 import Cookies from 'js-cookie'
 import Loader from 'react-loader-spinner'
-import Header from '../Header'
+import {HiOutlineSearch} from 'react-icons/hi'
 import MoviesContext from '../../MoviesContext'
 import './index.css'
 
@@ -10,6 +10,8 @@ class SearchRoute extends Component {
   state = {
     requestFailed: false,
     initialSearchResultsList: [],
+    search: '',
+    trigger: false,
   }
 
   componentDidMount() {
@@ -21,9 +23,11 @@ class SearchRoute extends Component {
   }
 
   getSearchList = async () => {
+    this.setState({initialSearchResultsList: []})
+    const {search} = this.state
     const jwtToken = Cookies.get('jwt_token')
 
-    const url = ` https://apis.ccbp.in/movies-app/movies-search?query=""`
+    const url = ` https://apis.ccbp.in/movies-app/movies-search?search=${search}`
 
     const options = {
       method: 'GET',
@@ -36,7 +40,7 @@ class SearchRoute extends Component {
       const searchResponse = await fetch(url, options)
       const searchData = await searchResponse.json()
 
-      if (searchResponse.ok) {
+      if (searchResponse.ok && searchData.results.length > 0) {
         const camelData = searchData.results.map(each => ({
           backdropPath: each.backdrop_path,
           id: each.id,
@@ -49,7 +53,11 @@ class SearchRoute extends Component {
           initialSearchResultsList: camelData,
           requestFailed: false,
         })
-      } else {
+      }
+      if (searchResponse.ok && searchData.results.length === 0) {
+        this.setState({requestFailed: false})
+      }
+      if (searchResponse.status !== 200) {
         this.setState({requestFailed: true})
       }
     } catch (error) {
@@ -58,14 +66,14 @@ class SearchRoute extends Component {
   }
 
   renderFailureView = () => (
-    <div className="loader-container">
+    <div className="search-failure-container">
       <img
         src="https://res.cloudinary.com/dmhmf156f/image/upload/v1701170785/alert-triangle_prhrds.png"
         alt="failure view"
         className="failure-img"
       />
       <p className="fail-para">Something went wrong. Please try again</p>
-      <button type="button" className="try-btn" onClick={this.getMovies}>
+      <button type="button" className="try-btn" onClick={this.getSearchList}>
         Try Again
       </button>
     </div>
@@ -77,65 +85,153 @@ class SearchRoute extends Component {
     </div>
   )
 
-  filterList = inputWord => {
-    const {initialSearchResultsList} = this.state
-    const filteredList = initialSearchResultsList.filter(each =>
-      each.title.includes(inputWord),
-    )
+  filterList = () => {
+    const {initialSearchResultsList, search} = this.state
 
     return (
-      <>
-        {filteredList.length > 0 ? (
+      <div>
+        {initialSearchResultsList.length > 0 ? (
           <ul className="bottom-list">
-            {filteredList.map(each => (
-              <Link
-                to={`/movies/${each.id}`}
-                key={each.id}
-                className="link-item-search"
-                id={each.id}
-              >
-                <img
-                  src={each.posterPath}
-                  alt={each.title}
-                  className="search-img"
-                />
-              </Link>
+            {initialSearchResultsList.map(each => (
+              <li className="li-s" key={each.id}>
+                <Link to={`/movies/${each.id}`} className="link-item-search">
+                  <img
+                    src={each.backdropPath}
+                    alt={each.title}
+                    className="search-img"
+                  />
+                </Link>
+              </li>
             ))}
           </ul>
         ) : (
           <div className="no-results">
             <img
               src="https://res.cloudinary.com/dmhmf156f/image/upload/v1702290368/Group_7394_cdwsp1.png"
-              alt="no results"
+              alt="no movies"
               className="no-results-img"
             />
-            <p className="no-results-p">{`Your search for ${inputWord} did not find any matches.`}</p>
+            <p className="no-results-p">{`Your search for ${search} did not find any matches.`}</p>
           </div>
         )}
-      </>
+      </div>
+    )
+  }
+
+  updateSearchWord = event => {
+    this.setState({search: event.target.value})
+  }
+
+  setWord = () => {
+    this.setState(
+      {trigger: true, initialSearchResultsList: []},
+      this.getSearchList,
     )
   }
 
   render() {
-    const {requestFailed, initialSearchResultsList} = this.state
+    const {
+      requestFailed,
+      initialSearchResultsList,
+      search,
+      trigger,
+    } = this.state
 
     return (
       <MoviesContext.Consumer>
         {value => {
-          const {searchWord} = value
+          const {activeOption, updateActiveOption} = value
+
+          const triggerOption = event => {
+            updateActiveOption(event.target.id)
+          }
+
+          const homeStyle = activeOption === 'home' ? 'yes' : ''
+          const popularStyle = activeOption === 'popular' ? 'yes' : ''
+          const profileStyle = activeOption === 'search' ? 'plus-link' : ''
 
           return (
             <div className="search-main">
-              <Header />
+              <nav className="header-main">
+                <ul className="first-div">
+                  <Link
+                    to="/"
+                    className="logo-link"
+                    id="home"
+                    onClick={triggerOption}
+                  >
+                    <img
+                      src="https://res.cloudinary.com/dmhmf156f/image/upload/v1701065357/Group_7399_r1dyde.svg"
+                      alt="website logo"
+                      className="movies-icon"
+                    />
+                  </Link>
+                  <Link
+                    to="/"
+                    onClick={triggerOption}
+                    id="home"
+                    className={`link-item ${homeStyle}`}
+                  >
+                    Home
+                  </Link>
+                  <Link
+                    to="/popular"
+                    onClick={triggerOption}
+                    id="popular"
+                    className={`link-item ${popularStyle}`}
+                  >
+                    Popular
+                  </Link>
+                </ul>
+                <ul className="second-div plus">
+                  <div className="search-div">
+                    <input
+                      type="search"
+                      className="search-bar"
+                      id="input"
+                      placeholder="Search"
+                      value={search}
+                      onChange={this.updateSearchWord}
+                    />
+                    <button
+                      type="button"
+                      className="search-icon-btn"
+                      onClick={this.setWord}
+                      testid="searchButton"
+                    >
+                      <HiOutlineSearch className="search-icon-bar" />
+                    </button>
+                  </div>
+                  <Link
+                    to="/account"
+                    className={`link ${profileStyle}`}
+                    id="account"
+                    onClick={triggerOption}
+                  >
+                    <img
+                      src="https://res.cloudinary.com/dmhmf156f/image/upload/v1701080405/Avatar_aa6zzi.png"
+                      alt="profile"
+                      className="profile-img"
+                    />
+                  </Link>
+                  <Link to="/account" className="link-queue">
+                    <img
+                      src="https://res.cloudinary.com/dmhmf156f/image/upload/v1701153539/add-to-queue_1_ws32q3.png"
+                      alt="queue"
+                      className="queue-img"
+                    />
+                  </Link>
+                </ul>
+              </nav>
               <div className="movies-list">
                 {initialSearchResultsList.length === 0 ? (
-                  <>
+                  <div>
                     {requestFailed
                       ? this.renderFailureView()
                       : this.renderLoader()}
-                  </>
+                  </div>
                 ) : (
-                  <>{searchWord !== '' ? this.filterList(searchWord) : null}</>
+                  <div>{trigger ? this.filterList() : null}</div>
                 )}
               </div>
             </div>

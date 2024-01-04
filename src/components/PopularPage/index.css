@@ -4,7 +4,7 @@
   background-color: #000000;
 }
 .bottom-contained {
-  height: 85%;
+  height: 80%;
   width: 100%;
   background-color: #000000;
   margin: 0px;
@@ -20,7 +20,7 @@
   align-items: center;
 }
 .popular-div {
-  height: 85%;
+  height: 98%;
   width: 100%;
   list-style-type: none;
   padding-left: 0px;
@@ -31,6 +31,12 @@
   overflow-y: auto;
   margin-top: 0px;
   margin-bottom: 0px;
+}
+.li {
+  width: 24%;
+  height: 24%;
+  margin-bottom: 1%;
+  margin-right: 1%;
 }
 .link-items {
   width: 24%;
