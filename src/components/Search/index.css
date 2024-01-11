@@ -65,5 +65,22 @@
   color: #ffffff;
   font-size: 16px;
   font-weight: 400;
-  font-family: 'sans-serif';
+}
+
+@media screen and (max-width: 576px) {
+  .li-s {
+    width: 48%;
+    height: 25%;
+    margin-right: 2%;
+    margin-bottom: 1%;
+  }
+}
+
+@media screen and (min-width: 576px) and (max-width: 768px) {
+  .li-s {
+    width: 48%;
+    height: 48%;
+    margin-right: 2%;
+    margin-bottom: 2%;
+  }
 }

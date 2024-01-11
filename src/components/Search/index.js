@@ -18,10 +18,6 @@ class SearchRoute extends Component {
     this.getSearchList()
   }
 
-  componentWillUnmount() {
-    this.setState({initialSearchResultsList: []})
-  }
-
   getSearchList = async () => {
     this.setState({initialSearchResultsList: []})
     const {search} = this.state
@@ -39,6 +35,7 @@ class SearchRoute extends Component {
     try {
       const searchResponse = await fetch(url, options)
       const searchData = await searchResponse.json()
+      console.log(searchData)
 
       if (searchResponse.ok && searchData.results.length > 0) {
         const camelData = searchData.results.map(each => ({
@@ -53,12 +50,10 @@ class SearchRoute extends Component {
           initialSearchResultsList: camelData,
           requestFailed: false,
         })
-      }
-      if (searchResponse.ok && searchData.results.length === 0) {
-        this.setState({requestFailed: false})
-      }
-      if (searchResponse.status !== 200) {
-        this.setState({requestFailed: true})
+      } else if (searchResponse.ok && searchData.results.length === 0) {
+        this.setState({requestFailed: false, initialSearchResultsList: [0]})
+      } else if (searchResponse.status !== 200) {
+        this.setState({requestFailed: true, initialSearchResultsList: []})
       }
     } catch (error) {
       console.log(error)
@@ -89,8 +84,8 @@ class SearchRoute extends Component {
     const {initialSearchResultsList, search} = this.state
 
     return (
-      <div>
-        {initialSearchResultsList.length > 0 ? (
+      <>
+        {initialSearchResultsList[0] !== 0 ? (
           <ul className="bottom-list">
             {initialSearchResultsList.map(each => (
               <li className="li-s" key={each.id}>
@@ -114,7 +109,7 @@ class SearchRoute extends Component {
             <p className="no-results-p">{`Your search for ${search} did not find any matches.`}</p>
           </div>
         )}
-      </div>
+      </>
     )
   }
 
@@ -172,7 +167,7 @@ class SearchRoute extends Component {
                     id="home"
                     className={`link-item ${homeStyle}`}
                   >
-                    Home
+                    <li>Home</li>
                   </Link>
                   <Link
                     to="/popular"
@@ -180,7 +175,7 @@ class SearchRoute extends Component {
                     id="popular"
                     className={`link-item ${popularStyle}`}
                   >
-                    Popular
+                    <li>Popular</li>
                   </Link>
                 </ul>
                 <ul className="second-div plus">
@@ -225,13 +220,13 @@ class SearchRoute extends Component {
               </nav>
               <div className="movies-list">
                 {initialSearchResultsList.length === 0 ? (
-                  <div>
+                  <>
                     {requestFailed
                       ? this.renderFailureView()
                       : this.renderLoader()}
-                  </div>
+                  </>
                 ) : (
-                  <div>{trigger ? this.filterList() : null}</div>
+                  <>{trigger ? this.filterList() : null}</>
                 )}
               </div>
             </div>

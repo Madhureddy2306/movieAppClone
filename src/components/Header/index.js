@@ -35,7 +35,7 @@ const Header = () => (
               id="home"
               className={`link-item ${homeStyle}`}
             >
-              Home
+              <li>Home</li>
             </Link>
             <Link
               to="/popular"
@@ -43,7 +43,7 @@ const Header = () => (
               id="popular"
               className={`link-item ${popularStyle}`}
             >
-              Popular
+              <li>Popular</li>
             </Link>
           </ul>
           <ul className={`second-div ${searchStyle}`}>

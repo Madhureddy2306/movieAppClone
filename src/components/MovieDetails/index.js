@@ -101,7 +101,7 @@ class MovieDetails extends Component {
 
   renderMovieBody = () => {
     const {movieInfo} = this.state
-    const adultOk = movieInfo.adult ? 'A.' : 'A/U'
+    const adultOk = movieInfo.adult ? 'A' : 'U/A'
 
     return (
       <>

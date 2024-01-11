@@ -10,4 +10,6 @@ body {
 * {
   box-sizing: border-box;
   font-family: 'Roboto';
+  background-repeat: no-repeat;
+  background-size: cover;
 }
