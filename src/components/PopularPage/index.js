@@ -67,13 +67,15 @@ class PopularPage extends Component {
     return (
       <ul className="popular-div">
         {popularMoviesList.map(each => (
-          <Link to={`/movies/${each.id}`} key={each.id} className="link-items">
-            <img
-              alt={each.title}
-              src={each.posterPath}
-              className="popular-card"
-            />
-          </Link>
+          <li className="li-p" key={each.id}>
+            <Link to={`/movies/${each.id}`} className="link-items">
+              <img
+                alt={each.title}
+                src={each.posterPath}
+                className="popular-card"
+              />
+            </Link>
+          </li>
         ))}
       </ul>
     )
