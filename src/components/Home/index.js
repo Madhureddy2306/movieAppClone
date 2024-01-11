@@ -325,6 +325,20 @@ class Home extends Component {
                   </Link>
                 </ul>
               </nav>
+              <ul className="mini-nav-home">
+                <Link to="/" className="nav-l">
+                  <li className="nav-link">Home</li>
+                </Link>
+                <Link to="/popular" className="nav-l">
+                  <li className="nav-link">Popular</li>
+                </Link>
+                <Link to="/account" className="nav-l">
+                  <li className="nav-link">Account</li>
+                </Link>
+                <Link to="/search" className="nav-l">
+                  <li className="nav-link">Search</li>
+                </Link>
+              </ul>
               <div className="random-movie" id="random">
                 {originalMoviesList.length === 0 ? (
                   <div className="pass-1">

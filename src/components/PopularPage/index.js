@@ -65,19 +65,35 @@ class PopularPage extends Component {
     const {popularMoviesList} = this.state
 
     return (
-      <ul className="popular-div">
-        {popularMoviesList.map(each => (
-          <li className="li-p" key={each.id}>
-            <Link to={`/movies/${each.id}`} className="link-items">
-              <img
-                alt={each.title}
-                src={each.posterPath}
-                className="popular-card"
-              />
-            </Link>
-          </li>
-        ))}
-      </ul>
+      <>
+        <ul className="mini-nav">
+          <Link to="/" className="nav-l">
+            <li className="nav-link">Home</li>
+          </Link>
+          <Link to="/popular" className="nav-l">
+            <li className="nav-link">Popular</li>
+          </Link>
+          <Link to="/account" className="nav-l">
+            <li className="nav-link">Account</li>
+          </Link>
+          <Link to="/search" className="nav-l">
+            <li className="nav-link">Search</li>
+          </Link>
+        </ul>
+        <ul className="popular-div">
+          {popularMoviesList.map(each => (
+            <li className="li-p" key={each.id}>
+              <Link to={`/movies/${each.id}`} className="link-items">
+                <img
+                  alt={each.title}
+                  src={each.posterPath}
+                  className="popular-card"
+                />
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </>
     )
   }
 
