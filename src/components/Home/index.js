@@ -250,6 +250,11 @@ class Home extends Component {
           const popularStyle = activeOption === 'popular' ? 'yes' : ''
           const profileStyle = activeOption === 'search' ? 'plus-link' : ''
 
+          const navHome = activeOption === 'home' ? 'highlight' : ''
+          const navPop = activeOption === 'popular' ? 'highlight' : ''
+          const navAcc = activeOption === 'account' ? 'highlight' : ''
+          const navSea = activeOption === 'search' ? 'highlight' : ''
+
           return (
             <div className="home-main">
               <nav className="header-main">
@@ -321,22 +326,24 @@ class Home extends Component {
                       src="https://res.cloudinary.com/dmhmf156f/image/upload/v1701153539/add-to-queue_1_ws32q3.png"
                       alt="queue"
                       className="queue-img"
+                      id="account"
+                      onClick={triggerOption}
                     />
                   </Link>
                 </ul>
               </nav>
               <ul className="mini-nav-home">
                 <Link to="/" className="nav-l">
-                  <li className="nav-link">Home</li>
+                  <li className={`nav-link ${navHome}`}>Home</li>
                 </Link>
                 <Link to="/popular" className="nav-l">
-                  <li className="nav-link">Popular</li>
+                  <li className={`nav-link ${navPop}`}>Popular</li>
                 </Link>
                 <Link to="/account" className="nav-l">
-                  <li className="nav-link">Account</li>
+                  <li className={`nav-link ${navAcc}`}>Account</li>
                 </Link>
                 <Link to="/search" className="nav-l">
-                  <li className="nav-link">Search</li>
+                  <li className={`nav-link ${navSea}`}>Search</li>
                 </Link>
               </ul>
               <div className="random-movie" id="random">

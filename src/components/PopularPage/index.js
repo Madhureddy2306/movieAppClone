@@ -71,13 +71,13 @@ class PopularPage extends Component {
             <li className="nav-link">Home</li>
           </Link>
           <Link to="/popular" className="nav-l">
-            <li className="nav-link">Popular</li>
+            <li className="nav-link highlight">Popular</li>
           </Link>
           <Link to="/account" className="nav-l">
-            <li className="nav-link">Account</li>
+            <li className="nav-link ">Account</li>
           </Link>
           <Link to="/search" className="nav-l">
-            <li className="nav-link">Search</li>
+            <li className="nav-link ">Search</li>
           </Link>
         </ul>
         <ul className="popular-div">

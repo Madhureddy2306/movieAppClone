@@ -57,6 +57,9 @@
   font-family: 'sans serif';
   margin-top: 0px;
 }
+.highlight {
+  border-bottom: solid 2px lightskyblue;
+}
 
 .movies-category {
   color: #ffffff;
