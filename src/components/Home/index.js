@@ -350,28 +350,26 @@ class Home extends Component {
                   this.renderRandomMovie(randomNumber, originalMoviesList)
                 )}
               </div>
-              <div className="bottom-div">
-                <h1 className="movies-category">Trending Now</h1>
-                {originalMoviesList.length === 0 ? (
-                  <div className="pass">
-                    {requestFailed
-                      ? this.renderFailureView()
-                      : this.renderLoader()}
-                  </div>
-                ) : (
-                  this.renderTrendingVideos()
-                )}
-                <h1 className="movies-category">Originals</h1>
-                {trendingMoviesList.length === 0 ? (
-                  <div className="pass">
-                    {requestFailed
-                      ? this.renderFailureView()
-                      : this.renderLoader()}
-                  </div>
-                ) : (
-                  this.renderOriginalVideos()
-                )}
-              </div>
+              <h1 className="movies-category">Trending Now</h1>
+              {originalMoviesList.length === 0 ? (
+                <div className="pass">
+                  {requestFailed
+                    ? this.renderFailureView()
+                    : this.renderLoader()}
+                </div>
+              ) : (
+                this.renderTrendingVideos()
+              )}
+              <h1 className="movies-category">Originals</h1>
+              {trendingMoviesList.length === 0 ? (
+                <div className="pass">
+                  {requestFailed
+                    ? this.renderFailureView()
+                    : this.renderLoader()}
+                </div>
+              ) : (
+                this.renderOriginalVideos()
+              )}
               <Footer />
             </div>
           )
