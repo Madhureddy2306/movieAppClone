@@ -54,7 +54,8 @@
 }
 .mini-nav-home {
   height: 5%;
-  width: 100%;
+  width: 90%;
+  margin: auto;
   list-style-type: none;
   padding-left: 0px;
   display: flex;
@@ -295,6 +296,9 @@
     height: 105px;
     margin-top: 2px;
   }
+  .mini-nav-home {
+    display: none;
+  }
 }
 
 @media (min-width: 1200px) {
@@ -328,5 +332,8 @@
   .img-slide {
     height: 120px;
     margin-top: 2px;
+  }
+  .mini-nav-home {
+    display: none;
   }
 }
