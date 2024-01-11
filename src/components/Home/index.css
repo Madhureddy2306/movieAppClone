@@ -52,6 +52,17 @@
   background-color: #000000;
   margin: auto;
 }
+.mini-nav-home {
+  height: 5%;
+  width: 100%;
+  list-style-type: none;
+  padding-left: 0px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'sans serif';
+  margin-top: 0px;
+}
 
 .movies-category {
   color: #ffffff;
