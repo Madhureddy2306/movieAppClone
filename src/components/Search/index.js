@@ -35,7 +35,6 @@ class SearchRoute extends Component {
     try {
       const searchResponse = await fetch(url, options)
       const searchData = await searchResponse.json()
-      console.log(searchData)
 
       if (searchResponse.ok && searchData.results.length > 0) {
         const camelData = searchData.results.map(each => ({
@@ -169,7 +168,7 @@ class SearchRoute extends Component {
                     id="home"
                     className={`link-item ${homeStyle}`}
                   >
-                    <li>Home</li>
+                    Home
                   </Link>
                   <Link
                     to="/popular"
@@ -177,7 +176,7 @@ class SearchRoute extends Component {
                     id="popular"
                     className={`link-item ${popularStyle}`}
                   >
-                    <li>Popular</li>
+                    Popular
                   </Link>
                 </ul>
                 <ul className="second-div plus">

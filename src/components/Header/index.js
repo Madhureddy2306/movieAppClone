@@ -20,78 +20,60 @@ const Header = () => (
       return (
         <nav className="header-main">
           <ul className="first-div">
-            <li>
-              <Link
-                to="/"
-                id="home"
+            <Link
+              to="/"
+              id="home"
+              onClick={triggerOption}
+              className="logo-link"
+            >
+              <img
+                src="https://res.cloudinary.com/dmhmf156f/image/upload/v1701065357/Group_7399_r1dyde.svg"
+                alt="website logo"
+                className="movies-icon"
                 onClick={triggerOption}
-                className="logo-link"
-              >
-                <img
-                  src="https://res.cloudinary.com/dmhmf156f/image/upload/v1701065357/Group_7399_r1dyde.svg"
-                  alt="website logo"
-                  className="movies-icon"
-                  onClick={triggerOption}
-                  id="home"
-                />
-              </Link>
-            </li>
+                id="home"
+              />
+            </Link>
             <Link
               to="/"
               onClick={triggerOption}
               id="home"
               className={`link-item ${homeStyle}`}
             >
-              <li>Home</li>
+              Home
             </Link>
+
             <Link
               to="/popular"
               onClick={triggerOption}
               id="popular"
               className={`link-item ${popularStyle}`}
             >
-              <li>Popular</li>
+              Popular
             </Link>
           </ul>
           <ul className={`second-div ${searchStyle}`}>
-            {activeOption === 'search' ? (
-              <div className="search-div">
-                <input
-                  type="search"
-                  className="search-bar"
-                  id="input"
-                  placeholder="Search"
-                />
-                <button
-                  type="button"
-                  className="search-icon-btn"
-                  testid="searchButton"
-                >
-                  <HiOutlineSearch className="search-icon-bar" />
-                </button>
-              </div>
-            ) : (
-              <Link
-                to="/search"
-                className="link-btn"
+            <Link
+              to="/search"
+              className="link-btn"
+              id="search"
+              onClick={triggerOption}
+            >
+              <button
+                type="button"
+                className="search-btn"
+                testid="searchButton"
                 id="search"
                 onClick={triggerOption}
               >
-                <button
-                  type="button"
-                  className="search-btn"
-                  testid="searchButton"
+                <HiOutlineSearch
+                  className="search-icon"
                   id="search"
                   onClick={triggerOption}
-                >
-                  <HiOutlineSearch
-                    className="search-icon"
-                    id="search"
-                    onClick={triggerOption}
-                  />
-                </button>
-              </Link>
-            )}
+                />
+              </button>
+            </Link>
+
             <Link
               to="/account"
               className={`link ${profileStyle}`}
