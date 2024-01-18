@@ -159,6 +159,8 @@ class SearchRoute extends Component {
                       src="https://res.cloudinary.com/dmhmf156f/image/upload/v1701065357/Group_7399_r1dyde.svg"
                       alt="website logo"
                       className="movies-icon"
+                      onClick={triggerOption}
+                      id="home"
                     />
                   </Link>
                   <Link

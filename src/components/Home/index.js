@@ -3,7 +3,7 @@ import Loader from 'react-loader-spinner'
 import {Link} from 'react-router-dom'
 import Slider from 'react-slick'
 import Cookies from 'js-cookie'
-import {HiOutlineSearch} from 'react-icons/hi'
+import Header from '../Header'
 import MoviesContext from '../../MoviesContext'
 import Footer from '../Footer'
 import 'slick-carousel/slick/slick.css'
@@ -240,15 +240,7 @@ class Home extends Component {
     return (
       <MoviesContext.Consumer>
         {value => {
-          const {activeOption, updateActiveOption} = value
-
-          const triggerOption = event => {
-            updateActiveOption(event.target.id)
-          }
-
-          const homeStyle = activeOption === 'home' ? 'yes' : ''
-          const popularStyle = activeOption === 'popular' ? 'yes' : ''
-          const profileStyle = activeOption === 'search' ? 'plus-link' : ''
+          const {activeOption} = value
 
           const navHome = activeOption === 'home' ? 'highlight' : ''
           const navPop = activeOption === 'popular' ? 'highlight' : ''
@@ -257,81 +249,7 @@ class Home extends Component {
 
           return (
             <div className="home-main">
-              <nav className="header-main">
-                <div className="first-div">
-                  <Link
-                    to="/"
-                    className="logo-link"
-                    id="home"
-                    onClick={triggerOption}
-                  >
-                    <img
-                      src="https://res.cloudinary.com/dmhmf156f/image/upload/v1701065357/Group_7399_r1dyde.svg"
-                      alt="website logo"
-                      id="home"
-                      className="movies-icon"
-                      onClick={triggerOption}
-                    />
-                  </Link>
-                  <Link
-                    to="/"
-                    onClick={triggerOption}
-                    id="home"
-                    className={`link-item ${homeStyle}`}
-                  >
-                    <p id="home" className={`link-item ${homeStyle}`}>
-                      Home
-                    </p>
-                  </Link>
-                  <Link
-                    to="/popular"
-                    onClick={triggerOption}
-                    id="popular"
-                    className={`link-item ${popularStyle}`}
-                  >
-                    <p id="popular" className={`link-item ${popularStyle}`}>
-                      Popular
-                    </p>
-                  </Link>
-                </div>
-                <ul className="second-div">
-                  <Link
-                    to="/search"
-                    className="link-btn"
-                    id="search"
-                    onClick={triggerOption}
-                  >
-                    <button
-                      type="button"
-                      className="search-btn"
-                      testid="searchButton"
-                    >
-                      <HiOutlineSearch className="search-icon" />
-                    </button>
-                  </Link>
-                  <Link
-                    to="/account"
-                    className={`link ${profileStyle}`}
-                    id="account"
-                    onClick={triggerOption}
-                  >
-                    <img
-                      src="https://res.cloudinary.com/dmhmf156f/image/upload/v1701080405/Avatar_aa6zzi.png"
-                      alt="profile"
-                      className="profile-img"
-                    />
-                  </Link>
-                  <Link to="/account" className="link-queue">
-                    <img
-                      src="https://res.cloudinary.com/dmhmf156f/image/upload/v1701153539/add-to-queue_1_ws32q3.png"
-                      alt="queue"
-                      className="queue-img"
-                      id="account"
-                      onClick={triggerOption}
-                    />
-                  </Link>
-                </ul>
-              </nav>
+              <Header />
               <ul className="mini-nav-home">
                 <Link to="/" className="nav-l">
                   <li className={`nav-link ${navHome}`}>Home</li>

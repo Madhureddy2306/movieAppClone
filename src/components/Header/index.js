@@ -1,4 +1,4 @@
-import {Link} from 'react-router-dom'
+import {Link, withRouter} from 'react-router-dom'
 import {HiOutlineSearch} from 'react-icons/hi'
 import MoviesContext from '../../MoviesContext'
 import './index.css'
@@ -20,15 +20,22 @@ const Header = () => (
       return (
         <nav className="header-main">
           <ul className="first-div">
-            <Link to="/" className="logo-link">
-              <img
-                src="https://res.cloudinary.com/dmhmf156f/image/upload/v1701065357/Group_7399_r1dyde.svg"
-                alt="website logo"
-                className="movies-icon"
-                onClick={triggerOption}
+            <li>
+              <Link
+                to="/"
                 id="home"
-              />
-            </Link>
+                onClick={triggerOption}
+                className="logo-link"
+              >
+                <img
+                  src="https://res.cloudinary.com/dmhmf156f/image/upload/v1701065357/Group_7399_r1dyde.svg"
+                  alt="website logo"
+                  className="movies-icon"
+                  onClick={triggerOption}
+                  id="home"
+                />
+              </Link>
+            </li>
             <Link
               to="/"
               onClick={triggerOption}
@@ -102,6 +109,8 @@ const Header = () => (
                 src="https://res.cloudinary.com/dmhmf156f/image/upload/v1701153539/add-to-queue_1_ws32q3.png"
                 alt="queue"
                 className="queue-img"
+                id="account"
+                onClick={triggerOption}
               />
             </Link>
           </ul>
@@ -111,4 +120,4 @@ const Header = () => (
   </MoviesContext.Consumer>
 )
 
-export default Header
+export default withRouter(Header)
