@@ -30,6 +30,7 @@ const App = () => {
         <LoginChecking exact path="/" component={Home} />
         <LoginChecking exact path="/popular" component={PopularPage} />
         <LoginChecking exact path="/movies/:movieId" component={MovieDetails} />
+        <LoginChecking exact path="/similar-movie/:movieId" component={MovieDetails} />
         <LoginChecking exact path="/search" component={SearchRoute} />
         <LoginChecking exact path="/account" component={Account} />
         <Route component={NotFound} />
