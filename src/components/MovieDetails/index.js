@@ -157,7 +157,7 @@ class MovieDetails extends Component {
             <ul className="movies-div">
               {movieInfo.similarMovies.map(each => (
                 <Link
-                  to={`/movies/${each.id}`}
+                  to={`/similar-movie/${each.id}`}
                   className="link-style"
                   key={each.id}
                 >
